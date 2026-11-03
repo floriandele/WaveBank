@@ -14,3 +14,11 @@ export function formatDate(dateStr, options = { day: '2-digit', month: 'long', y
 export function formatDateShort(dateStr) {
   return new Intl.DateTimeFormat('fr-FR', { day: '2-digit', month: 'short' }).format(new Date(dateStr))
 }
+
+export function formatPercentage(value, decimals = 1) {
+  return new Intl.NumberFormat('fr-FR', {
+    style: 'percent',
+    minimumFractionDigits: decimals,
+    maximumFractionDigits: decimals,
+  }).format(value)
+}
