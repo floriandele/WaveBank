@@ -4,6 +4,7 @@ import { company } from '../data/company'
 const navItems = [
   { to: '/', label: 'Tableau de bord', end: true },
   { to: '/comptes', label: 'Comptes' },
+  { to: '/credits', label: 'Crédits' },
   { to: '/factures', label: 'Factures' },
 ]
 
