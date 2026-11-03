@@ -4,6 +4,7 @@ import DashboardPage from './pages/DashboardPage'
 import AccountsPage from './pages/AccountsPage'
 import AccountDetailPage from './pages/AccountDetailPage'
 import InvoicesPage from './pages/InvoicesPage'
+import CommitmentsPage from './pages/CommitmentsPage'
 
 export const router = createBrowserRouter([
   {
@@ -14,6 +15,7 @@ export const router = createBrowserRouter([
       { path: 'comptes', Component: AccountsPage },
       { path: 'comptes/:id', Component: AccountDetailPage },
       { path: 'factures', Component: InvoicesPage },
+      { path: 'engagements', Component: CommitmentsPage },
     ],
   },
 ])
