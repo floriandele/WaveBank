@@ -1,13 +1,16 @@
 import { Link } from 'react-router'
 import { accounts } from '../data/accounts'
 import { invoices } from '../data/invoices'
-import { cashflowForecast } from '../data/cashflow'
+import { monthEndForecast, projectedTransactions } from '../data/monthEndForecast'
 import { company } from '../data/company'
+import { transactions } from '../data/transactions'
 import KpiCard from '../components/KpiCard'
 import CashFlowChart from '../components/CashFlowChart'
+import MonthEndSummary from '../components/MonthEndSummary'
 import AccountCard from '../components/AccountCard'
 import InvoiceRow from '../components/InvoiceRow'
 import { formatAmount, formatDate } from '../utils/format'
+import { filterCurrentMonth } from '../utils/forecast'
 
 // Prévision de décaissements sur 30 jours basée sur les charges récurrentes
 // connues (salaires, charges sociales, loyer, assurance). Valeur cohérente
@@ -28,6 +31,19 @@ export default function DashboardPage() {
   const recentInvoices = [...invoices]
     .sort((a, b) => new Date(b.issuedDate) - new Date(a.issuedDate))
     .slice(0, 5)
+
+  // Projection de fin de mois
+  const todayStr = new Date().toISOString().slice(0, 10)
+  const currentMonthForecast = filterCurrentMonth(monthEndForecast, todayStr)
+
+  // Toutes les transactions EUR du mois courant (historique + planifiées)
+  const eurTransactions = [
+    ...transactions.filter((t) => {
+      const acc = accounts.find((a) => a.id === t.accountId)
+      return acc && acc.currency === 'EUR'
+    }),
+    ...projectedTransactions,
+  ]
 
   return (
     <>
@@ -64,8 +80,19 @@ export default function DashboardPage() {
           />
         </div>
 
+        {/* Graphique CashFlow (données hybrides historique + prévisionnel) */}
         <div className="mt-10 border border-line bg-white p-6">
-          <CashFlowChart data={cashflowForecast} />
+          <CashFlowChart data={monthEndForecast} />
+        </div>
+
+        {/* Résumé de projection fin de mois */}
+        <div className="mt-6">
+          <MonthEndSummary
+            currentBalance={soldeTotal}
+            forecastData={currentMonthForecast}
+            transactions={eurTransactions}
+            todayStr={todayStr}
+          />
         </div>
 
         <div className="mt-10 grid gap-8 pb-16 lg:grid-cols-2">
