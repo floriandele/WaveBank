@@ -5,6 +5,7 @@ const navItems = [
   { to: '/', label: 'Tableau de bord', end: true },
   { to: '/comptes', label: 'Comptes' },
   { to: '/factures', label: 'Factures' },
+  { to: '/prets', label: 'Prêts' },
 ]
 
 export default function Header() {
