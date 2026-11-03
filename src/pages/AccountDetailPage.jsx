@@ -2,6 +2,7 @@ import { Link, useParams } from 'react-router'
 import { accounts } from '../data/accounts'
 import { transactions } from '../data/transactions'
 import TransactionRow from '../components/TransactionRow'
+import MonthEndBalanceWidget from '../components/MonthEndBalanceWidget'
 import { formatAmount } from '../utils/format'
 
 export default function AccountDetailPage() {
@@ -45,6 +46,8 @@ export default function AccountDetailPage() {
           </p>
         </div>
       </div>
+
+      <MonthEndBalanceWidget account={account} allTransactions={transactions} />
 
       <div className="mt-8">
         <h2 className="font-display text-lg font-bold text-navy">Mouvements</h2>

@@ -2,13 +2,14 @@
 // Les variations reflètent des échéances connues : salaires en début de mois,
 // charges sociales et loyer à mi-mois, encaissements clients attendus aux
 // dates d'échéance des factures en cours.
+// isMonthEnd: true indique le dernier jour du mois (utile pour la projection fin de mois).
 export const cashflowForecast = [
   { date: '2026-09-25', balance: 58200 },
   { date: '2026-09-26', balance: 57980 },
   { date: '2026-09-27', balance: 59650 },
   { date: '2026-09-28', balance: 59420 },
   { date: '2026-09-29', balance: 59190 },
-  { date: '2026-09-30', balance: 58960 },
+  { date: '2026-09-30', balance: 58960, isMonthEnd: true },
   { date: '2026-10-01', balance: 50680 },
   { date: '2026-10-02', balance: 50460 },
   { date: '2026-10-03', balance: 50230 },
@@ -33,4 +34,5 @@ export const cashflowForecast = [
   { date: '2026-10-22', balance: 48780 },
   { date: '2026-10-23', balance: 48560 },
   { date: '2026-10-24', balance: 48340 },
+  // Note: 2026-10-31 (fin octobre) n'est pas couvert par la fenêtre de 30 jours courante.
 ]
