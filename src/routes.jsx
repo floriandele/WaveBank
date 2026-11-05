@@ -4,6 +4,10 @@ import DashboardPage from './pages/DashboardPage'
 import AccountsPage from './pages/AccountsPage'
 import AccountDetailPage from './pages/AccountDetailPage'
 import InvoicesPage from './pages/InvoicesPage'
+import LoansPage from './pages/LoansPage'
+import LoanDetailPage from './pages/LoanDetailPage'
+import LoanSimulatorPage from './pages/LoanSimulatorPage'
+import LoanApplicationPage from './pages/LoanApplicationPage'
 
 export const router = createBrowserRouter([
   {
@@ -14,6 +18,10 @@ export const router = createBrowserRouter([
       { path: 'comptes', Component: AccountsPage },
       { path: 'comptes/:id', Component: AccountDetailPage },
       { path: 'factures', Component: InvoicesPage },
+      { path: 'prets', Component: LoansPage },
+      { path: 'prets/simulateur', Component: LoanSimulatorPage },
+      { path: 'prets/demande', Component: LoanApplicationPage },
+      { path: 'prets/:id', Component: LoanDetailPage },
     ],
   },
 ])
